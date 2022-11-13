@@ -1,0 +1,10 @@
+rsync -avh  /var/lib/Jenkins/workspace/demo-project/*.html  admindev@192.168.31.159:/opt/index.html
+
+-----------------------
+cd /opt/docker
+docker build -t $JOB_NAME:v1.$BUILD_ID .
+docker tag $JOB_NAME:v1.$BUILD_ID shivakharol/$JOB_NAME:v1.$BUILD_ID
+docker tag $JOB_NAME:v1.$BUILD_ID shivakharol/$JOB_NAME:latest
+docker push shivakharol/$JOB_NAME:v1.$BUILD_ID
+docker push shivakharol/$JOB_NAME:latest
+docker rmi $JOB_NAME:v1.$BUILD_ID shivakharol/$JOB_NAME:v1.$BUILD_ID shivakharol/$JOB_NAME: latest
